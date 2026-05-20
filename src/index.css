@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    background-color: #f9f9ff;
+    color: #111c2c;
+    font-family: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
+    min-height: 100dvh;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    line-height: 1;
+    font-size: 24px;
+    vertical-align: middle;
+  }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: #f0f3ff; }
+  ::-webkit-scrollbar-thumb { background: #c4c6d0; border-radius: 3px; }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply bg-secondary text-on-secondary font-semibold px-6 py-3 rounded-lg transition-all duration-200
+           hover:opacity-90 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed
+           flex items-center justify-center gap-2;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg transition-all duration-200
+           hover:bg-primary hover:text-on-primary active:scale-95
+           flex items-center justify-center gap-2;
+  }
+  .btn-ghost {
+    @apply text-on-surface-variant font-medium px-4 py-2 rounded-lg transition-all duration-200
+           hover:bg-surface-container hover:text-on-surface active:scale-95;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3
+           text-on-surface placeholder-outline font-inter text-body-md
+           focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary
+           transition-all duration-200;
+  }
+  .label {
+    @apply block text-label-md text-on-surface-variant font-inter mb-1.5;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-card;
+  }
+  .card-sm {
+    @apply bg-surface-container-lowest border border-outline-variant rounded-xl p-4 shadow-card;
+  }
+
+  /* Badges */
+  .badge-teal {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-label-sm
+           bg-secondary-container text-on-secondary-container font-semibold;
+  }
+  .badge-navy {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-label-sm
+           bg-primary-container/10 text-primary border border-outline-variant font-medium;
+  }
+
+  /* Grit bar */
+  .grit-bar-track {
+    @apply h-2 w-full bg-surface-container rounded-full overflow-hidden;
+  }
+  .grit-bar-fill {
+    @apply h-full bg-secondary rounded-full transition-all duration-700;
+  }
+
+  /* Page shell */
+  .page {
+    @apply min-h-screen bg-surface pb-24 md:pb-0;
+  }
+  .page-content {
+    @apply max-w-lg mx-auto px-container-margin-mobile pt-20 md:pt-24;
+  }
+  .section-title {
+    @apply text-headline-md font-hanken text-primary font-semibold;
+  }
+}
+
+/* Waveform bars animation */
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+.waveform-bar {
+  width: 4px;
+  border-radius: 2px;
+  background-color: #006a66;
+  margin: 0 2px;
+  transform-origin: bottom;
+}
+.waveform-bar.active {
+  animation: wave 0.8s ease-in-out infinite;
+}
+.waveform-bar:nth-child(2)  { animation-delay: 0.08s; }
+.waveform-bar:nth-child(3)  { animation-delay: 0.16s; }
+.waveform-bar:nth-child(4)  { animation-delay: 0.24s; }
+.waveform-bar:nth-child(5)  { animation-delay: 0.32s; }
+.waveform-bar:nth-child(6)  { animation-delay: 0.40s; }
+.waveform-bar:nth-child(7)  { animation-delay: 0.48s; }
+.waveform-bar:nth-child(8)  { animation-delay: 0.56s; }
+.waveform-bar:nth-child(9)  { animation-delay: 0.64s; }
+.waveform-bar:nth-child(10) { animation-delay: 0.72s; }
+
+/* Confetti for level unlock */
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.confetti-piece { animation: confettiFall 3s ease-in forwards; }
+
+/* Slide-up transition */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slideUp 0.35s ease-out both; }
